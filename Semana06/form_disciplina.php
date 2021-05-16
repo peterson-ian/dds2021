@@ -21,7 +21,7 @@
         <h1>Cadastro de Discplina</h1>
         <hr/>
         <form method="POST" action="recebe_form_disciplina.php">
-            <input type="text" name="nome" placeholder="Digite o nome do discplina" required/><br/>
+            <input type="text" name="nome" placeholder="Digite o nome da discplina" required/><br/>
             <input type="text" name="codigo" placeholder="Digite o codigo da discplina" required/><br/>
             <input type="text" name="curso" placeholder="Digite o curso da discplina" required/><br/>
             <input type="text" name="professor" placeholder="Digite o professor da discplina" required/><br/>
