@@ -1,0 +1,76 @@
+*{
+    margin: none;
+    text-decoration: none;
+    color: rgb(77, 77, 77);
+    box-sizing: border-box;
+}
+body{   
+    padding: 1.5%;
+    position: absolute;
+    margin: auto;
+    margin-top: 2.5%;
+    left: 50%;
+    font-size: 3vh;
+    transform: translate(-50%);
+    border: 1px solid gray;
+    border-radius: 15px;
+    box-shadow: 10px 10px rgb(5, 187, 120);
+}
+
+h2{
+    color: white;
+    background-color: rgb(5, 204, 131);
+    border-radius: 15px;
+    padding: 5px;
+}
+
+a{
+    color: rgb(5, 204, 131);
+    padding: 5px;
+    border-radius: 10px;
+}
+
+a:hover{
+    background-color: rgb(5, 204, 131);
+    color: white;   
+}
+
+input, select{
+    height: 28px;
+    width: 100%;
+    color: gray;
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+input[type="radio"]{
+    width: 20px;
+    padding: 0px;
+    border: 0px;
+    margin: 0px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+label{
+    margin: auto;
+    color: gray;
+    margin-right: 100px;
+}
+
+input[type="submit"]{
+    width: auto;
+    height: 30px;
+    padding: 5px 35px 5px 35px;
+    text-align: center;
+    color: white;
+    border: 1px solid rgb(5, 187, 120);
+    background-color: rgb(5, 204, 131);
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background-color: rgb(4, 177, 113);
+}
