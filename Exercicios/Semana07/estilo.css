@@ -1,0 +1,13 @@
+*{
+    box-sizing: border-box;
+}
+
+input.i{
+    width:250px;
+    height: 25px;
+    margin:10px;
+}
+
+textarea.t{
+    margin:10px;
+}
