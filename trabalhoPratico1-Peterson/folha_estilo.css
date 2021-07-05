@@ -1,0 +1,80 @@
+*{
+    box-sizing: border-box;
+    text-decoration: none;
+
+}
+
+body{
+    margin: 0;
+    padding: 0 2% 2% 2%;
+}
+
+#cabecalho{
+    padding-bottom: 2%;
+    color: rgb(102, 103, 106);  
+    font-size: 20px;
+}
+
+#cabecalho img{
+    max-height: 100px;
+    height: 100%;
+}
+
+#cabecalho a, form input[type='submit'] {
+    color: white;
+    background-color: #C9243F;
+    padding: 10px;
+    border-radius: 10px;
+    border: 0px;
+}
+
+#cabecalho a:hover, form input[type='submit']{
+    cursor: pointer;
+    background-color: #a0182f;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.form{
+    margin:10px;
+}
+
+.formulario{
+    width:250px;
+}
+
+.ok{
+    color:green;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+table, th, td{
+    border: solid 1px rgb(102, 103, 106);
+    color: rgb(68, 68, 68);
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+table th{
+   background-color: rgb(68, 68, 68);
+   color: white;
+}
+
+
+form{
+    font-size: 2vh;
+    border: 2px solid rgb(102, 103, 106);
+    border-radius: 15px;
+    padding: 15px;
+    align-items: center;
+}
+
+form h2{
+    color: #C9243F;
+}
+
+form input[type='text'], form input[type='number'], form select, form input[type='submit']{
+    width: 300px;
+    height: 30px;
+}
