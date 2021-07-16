@@ -3,30 +3,9 @@
     include "classesFormulario/classeFormulario.php";
     include "conexao.php";
 
-    if(!empty($_POST)){
-        $nome = $_POST["nome"];
-        $sobrenome = $_POST["sobrenome"];
-        $email = $_POST["email"];
-        $telefone = $_POST["telefone"];
-        date_default_timezone_set('America/Sao_Paulo');
-        $data_registro =  date('Y/m/d');
-        $id_funcao = $_POST["id_funcao"];
-        $salario = $_POST["salario"];
-        $comissao = $_POST["comissao"];
-        if($_POST["id_gerente"] == '-1')
-            $id_gerente = 'NULL';
-        else 
-            $id_gerente = $_POST["id_gerente"];
-        $id_departamento = $_POST["id_departamento"];
-        $sql = "INSERT INTO 
-                    FUNCIONARIO 
-                VALUES 
-                    (NULL, '$nome', '$sobrenome', '$email', 
-                        '$telefone', '$data_registro', '$id_funcao', 
-                        '$salario', '$comissao', $id_gerente, '$id_departamento');";
-        $conexao->query($sql) or die($conexao->errorInfo());
-        echo "<span class='ok'>Funcionario inserido com sucesso</span><br />";
-    }
+    echo'<script src="js/funcionario.js"></script>';
+
+    echo"<p id='msg'></p>";
 
     $v["method"] = "POST";
     $v["action"] = "#";
@@ -69,6 +48,15 @@
     $v["placeholder"] = "Digite o telefone do funcionario...";
     $v["name"] = "telefone";
     $v["id"] = "telefone_funcionario";
+    $v["class"]="formulario input";
+    $i = new Input($v);    
+
+    $f->adiciona_elemento($i);
+
+    $v = null;
+    $v["type"] = "date";
+    $v["name"] = "data_contratacao";
+    $v["id"] = "data_contratacao_funcionario";
     $v["class"]="formulario input";
     $i = new Input($v);    
 
@@ -152,9 +140,10 @@
     $f->adiciona_elemento($i);
 
     $v = null;
-    $v["type"]="submit";    
-    $v["name"]="input";    
-    $v["value"]="Enviar";
+    $v["type"]="button";    
+    $v["name"]="cadastrar-funcionario";
+    $v["id"]="cadastrar-funcionario"; 
+    $v["value"]="Cadastrar";
     $i = new Input($v);
 
     $f->adiciona_elemento($i);

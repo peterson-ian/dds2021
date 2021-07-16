@@ -2,17 +2,9 @@
     include "cabecalho.php";
     include "classesFormulario/classeFormulario.php";
 
-    if(!empty($_POST)){
-        include "conexao.php";
-        $id_funcao = $_POST["id_funcao"];
-        $titulo = $_POST["titulo"];
-        $salario_min = $_POST["salario_min"];
-        $salario_max = $_POST["salario_max"];
+    echo'<script src="js/funcao.js"></script>';
 
-        $sql = "INSERT INTO FUNCAO VALUES (' $id_funcao', '$titulo', '$salario_min', '$salario_max')";
-        $conexao->query($sql) or die($conexao->errorInfo());
-        echo "<span class='ok'>Função inserida com sucesso</span><br />";
-    }
+    echo"<p id='msg'></p>";
 
     $v["method"] = "POST";
     $v["action"] = "#";
@@ -63,9 +55,10 @@
     $f->adiciona_elemento($i);
 
     $v = null;
-    $v["type"]="submit";    
-    $v["name"]="input";    
-    $v["value"]="Enviar";
+    $v["type"]="button";    
+    $v["name"]="cadastrar-funcao"; 
+    $v["id"]="cadastrar-funcao";    
+    $v["value"]="Cadastrar";
     $i = new Input($v);
 
     $f->adiciona_elemento($i);

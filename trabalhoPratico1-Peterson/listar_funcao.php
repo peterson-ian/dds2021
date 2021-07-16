@@ -1,28 +1,20 @@
 <?php
     include "cabecalho.php";
     include "conexao.php";
+    require_once "classeTabela/tabela.php";
+    echo'<script src="js/funcao.js"></script>';
 
-    $sql = "SELECT * FROM FUNCAO ORDER BY SALARIO_MAXIMO;";
+    $sql = "SELECT * FROM FUNCAO ORDER BY TITULO_FUNCAO;";
     $resultado = $conexao->query($sql);
+
+    $tabela = 'FUNCAO';
+    $cabecalho = ['SIGLA', 'TITULO', 'SALARIO MAX', 'SALARIO MIN'];
+
+    if($resultado->rowCount()>0){
+        $r = new Tabela($tabela, $cabecalho, $resultado);
+        $r->exibir();
+    }
+    else{
+        echo "Não há funções cadastradas.";
+    }
 ?>
-<table >
-    <tr>
-        <th>SIGLA</th>
-        <th>TITULO</th>
-        <th>SALARIO MAXÍMO</th>
-        <th>SALARIO MINIMO</th>
-    </tr>
-    <?php
-        foreach($resultado as $i=>$t){
-            echo "  
-            <tr>
-                <td>".$t["ID_FUNCAO"]."</td>
-                <td>".$t["TITULO_FUNCAO"]."</td>
-                <td> R$".$t["SALARIO_MINIMO"]."</td>
-                <td> R$".$t["SALARIO_MAXIMO"]."</td>
-            </tr>";
-        }
-    ?>
-</table>
-</body>
-</html>

@@ -3,18 +3,9 @@
     include "classesFormulario/classeFormulario.php";
     include "conexao.php";
 
-    if(!empty($_POST)){
-        $nome = $_POST["nome"];
-        if($_POST["id_gerente"] == '-1')
-            $id_gerente = 'NULL';
-        else 
-            $id_gerente = $_POST["id_gerente"];
-        $id_localizacao = $_POST["id_localizacao"];
+    echo'<script src="js/departamento.js"></script>';
 
-        $sql = "INSERT INTO DEPARTAMENTO VALUES (NULL, '$nome', $id_gerente, '$id_localizacao')";
-        $conexao->query($sql) or die($conexao->errorInfo());
-        echo "<span class='ok'>Departamento inserido com sucesso</span><br />";
-    }
+    echo"<p id='msg'></p>";
 
     $v["method"] = "POST";
     $v["action"] = "#";
@@ -46,7 +37,7 @@
         $options[$i]["label_option"] = $t["NOME_COMPLETO"];
     }
 
-    $i = new Select($v, $ol, $options);    
+    $i = new Select($v, $ol, $options);
 
     $f->adiciona_elemento($i);
 
@@ -70,9 +61,10 @@
     $f->adiciona_elemento($i);
 
     $v = null;
-    $v["type"]="submit";    
-    $v["name"]="input";    
-    $v["value"]="Enviar";
+    $v["type"]="button";    
+    $v["name"]="cadastrar-departamento";
+    $v["id"]="cadastrar-departamento";  
+    $v["value"]="Cadastrar";
     $i = new Input($v);
 
     $f->adiciona_elemento($i);

@@ -2,15 +2,9 @@
     include "cabecalho.php";
     include "classesFormulario/classeFormulario.php";
     include "conexao.php";
+    echo'<script src="js/pais.js"></script>';
 
-    if(!empty($_POST)){        
-        $id_pais = $_POST["ID_PAIS"];
-        $nome_pais = $_POST["NOME_PAIS"];
-        $id_regiao = $_POST["ID_REGIAO"];
-        $sql = "INSERT INTO PAIS VALUES('$id_pais','$nome_pais','$id_regiao')";
-        $conexao->query($sql);
-        echo "<span class='ok'>País inserido com sucesso</span><br />";
-    }
+    echo"<p id='msg'></p>";
 
     $v["method"]="post";
     $v["action"]="#";
@@ -22,7 +16,7 @@
     $v["type"]="text";
     $v["name"]="ID_PAIS";
     $v["placeholder"]="Digite a sigla do país...";
-    $v["id"]="silga_pais_id";
+    $v["id"]="sigla_pais_id";
     $v["class"]="formulario input";
     $i = new Input($v);    
 
@@ -40,6 +34,7 @@
 
     $v = null;
     $v["name"]="ID_REGIAO";
+    $v["id"]="regiao_pais_id";
     $ol["label_select"] = "::Selecione a Região::";
 
     $sql = "SELECT * FROM REGIAO ORDER BY NOME_REGIAO";
@@ -55,9 +50,10 @@
     $f->adiciona_elemento($s);
 
     $v = null;
-    $v["type"]="submit";    
-    $v["name"]="input";    
-    $v["value"]="Enviar";
+    $v["type"]="button";    
+    $v["name"]="cadastrar-pais";
+    $v["id"]="cadastrar-pais";     
+    $v["value"]="Cadastrar";
     $i = new Input($v);
 
     $f->adiciona_elemento($i);

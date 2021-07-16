@@ -1,15 +1,9 @@
 <?php
     include "cabecalho.php";
     include "classesFormulario/classeFormulario.php";
+    echo'<script src="js/regiao.js"></script>';
 
-
-    if(!empty($_POST)){
-        include "conexao.php";
-        $nome_regiao = $_POST["NOME_REGIAO"];
-        $sql = "INSERT INTO REGIAO VALUES(NULL,'$nome_regiao')";
-        $conexao->query($sql) or die($conexao->errorInfo());
-        echo "<span class='ok'>Região inserida com sucesso</span><br />";
-    }
+    echo"<p id='msg'></p>";
 
     $v["method"]="post";
     $v["action"]="#";
@@ -28,9 +22,10 @@
     $f->adiciona_elemento($i);
 
     $v = null;
-    $v["type"]="submit";    
-    $v["name"]="input";    
-    $v["value"]="Enviar";
+    $v["type"]="button";    
+    $v["name"]="cadastrar-regiao";  
+    $v["id"]="cadastrar-regiao";     
+    $v["value"]="Cadastrar";
     $i = new Input($v);
 
     $f->adiciona_elemento($i);

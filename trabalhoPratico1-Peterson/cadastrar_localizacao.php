@@ -3,17 +3,9 @@
     include "classesFormulario/classeFormulario.php";
     include "conexao.php";
 
-    if(!empty($_POST)){
-        $endereco = $_POST["endereco"];
-        $cep = $_POST["cep"];
-        $cidade = $_POST["cidade"];
-        $estado = $_POST["estado"];
-        $pais = $_POST["pais"];
+    echo'<script src="js/localizacao.js"></script>';
 
-        $sql = "INSERT INTO LOCALIZACAO VALUES (NULL, '$endereco', '$cep', '$cidade', '$estado', '$pais');";
-        $conexao->query($sql) or die($conexao->errorInfo());
-        echo "<span class='ok'>Localização inserida com sucesso</span><br />";
-    };
+    echo"<p id='msg'></p>";
 
     $v["method"] = "POST";
     $v["action"] = "#";
@@ -81,9 +73,10 @@
     $f->adiciona_elemento($i);
 
     $v = null;
-    $v["type"]="submit";    
-    $v["name"]="input";    
-    $v["value"]="Enviar";
+    $v["type"]="button";    
+    $v["name"]="cadastrar-localizacao";    
+    $v["value"]="Cadastrar";
+    $v["id"] = "cadastrar-localizacao";
     $i = new Input($v);
 
     $f->adiciona_elemento($i);

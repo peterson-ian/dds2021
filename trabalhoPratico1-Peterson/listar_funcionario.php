@@ -1,10 +1,13 @@
 <?php
     include "cabecalho.php";
     include "conexao.php";
+    require_once "classeTabela/tabela.php";
+    echo'<script src="js/funcionario.js"></script>';
 
     $sql = "SELECT 
                 FUNCIONARIO.ID_FUNCIONARIO AS ID, 
-                CONCAT(FUNCIONARIO.NOME, ' ',FUNCIONARIO.SOBRENOME) AS NOMECOMPLETO,
+                FUNCIONARIO.NOME, 
+                FUNCIONARIO.SOBRENOME,
                 FUNCIONARIO.EMAIL, 
                 FUNCIONARIO.TELEFONE, 
                 FUNCIONARIO.DATA_CONTRATACAO, 
@@ -20,43 +23,16 @@
                 LEFT JOIN FUNCIONARIO GERENTE ON GERENTE.ID_FUNCIONARIO = FUNCIONARIO.ID_GERENTE
             ORDER BY FUNCIONARIO.ID_FUNCIONARIO";
     $resultado = $conexao->query($sql);
+    
+    $tabela = 'FUNCIONARIO';
+    $cabecalho = ['ID', 'PRIMEIRO NOME', 'SOBRENOME', 'EMAIL', 'TELEFONE', 'DATA CONTRATACAO',
+                'FUNCAO', 'SALARIO', 'COMISSAO', 'GERENTE', 'DEPARTAMENTO'];
+
+    if($resultado->rowCount()>0){
+        $r = new Tabela($tabela, $cabecalho, $resultado);
+        $r->exibir();
+    }
+    else{
+        echo "Não há funcionarios cadastrados.";
+    }
 ?>
-<table>
-    <tr>
-        <th>ID_FUNCIONARIO</th>
-        <th>NOME DO FUNCIONARIO</th>
-        <th>EMAIL</th>
-        <th>TELEFONE</th>
-        <th>DATA CONTRATAÇÃO</th>
-        <th>FUNÇÃO</th>
-        <th>SALARIO</th>
-        <th>COMISSÃO</th>
-        <th>GERENTE</th>
-        <th>DEPARTAMENTO</th>
-    </tr>
-    <?php
-        foreach($resultado as $i=>$t){
-            echo "  
-            <tr>
-                <td>".$t["ID"]."</td>
-                <td>".$t["NOMECOMPLETO"]."</td>
-                <td>".$t["EMAIL"]."</td>
-                <td>".$t["TELEFONE"]."</td>
-                <td>".$t["DATA_CONTRATACAO"]."</td>
-                <td>".$t["TITULO_FUNCAO"]."</td>
-                <td> R$".$t["SALARIO"]."</td>
-                <td>".$t["COMISSAO"]."%</td>
-            ";
-            if($t["GERENTE"] == NULL)
-                echo "<td>Sem gerente</>";
-            else
-                echo "<td>".$t["GERENTE"]."</td>";
-            echo"
-                <td>".$t["NOME_DEPARTAMENTO"]."</td>
-            </tr>";
-        }
-        
-    ?>
-</table>
-</body>
-</html>
