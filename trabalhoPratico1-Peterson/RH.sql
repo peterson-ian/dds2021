@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Jul-2021 às 19:20
+-- Tempo de geração: 18-Jul-2021 às 20:11
 -- Versão do servidor: 10.4.14-MariaDB
 -- versão do PHP: 7.2.34
 
@@ -225,6 +225,32 @@ INSERT INTO `regiao` (`ID_REGIAO`, `NOME_REGIAO`) VALUES
 (51, 'Antarctica'),
 (52, 'Asia');
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL,
+  `email` varchar(80) NOT NULL,
+  `senha` varchar(100) NOT NULL,
+  `perfil` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- RELACIONAMENTOS PARA TABELAS `usuarios`:
+--
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id_usuario`, `email`, `senha`, `perfil`) VALUES
+(1, 'admin@gmail.com', '1234', 1),
+(2, 'gerente@gmail.com', 'qwert', 2),
+(3, 'gestorRH@gmail.com', 'gestor123', 3);
+
 --
 -- Índices para tabelas despejadas
 --
@@ -281,6 +307,12 @@ ALTER TABLE `regiao`
   ADD PRIMARY KEY (`ID_REGIAO`);
 
 --
+-- Índices para tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id_usuario`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -288,25 +320,31 @@ ALTER TABLE `regiao`
 -- AUTO_INCREMENT de tabela `departamento`
 --
 ALTER TABLE `departamento`
-  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `ID_DEPARTAMENTO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de tabela `funcionario`
 --
 ALTER TABLE `funcionario`
-  MODIFY `ID_FUNCIONARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID_FUNCIONARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `localizacao`
 --
 ALTER TABLE `localizacao`
-  MODIFY `ID_LOCALIZACAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `ID_LOCALIZACAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de tabela `regiao`
 --
 ALTER TABLE `regiao`
-  MODIFY `ID_REGIAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `ID_REGIAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+
+--
+-- AUTO_INCREMENT de tabela `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas

@@ -1,5 +1,6 @@
 <?php
 
+// Arquivo que faz a conexao com o BD de rh 
 $sgbd="mysql";
 $host ="localhost";
 $usuario="root";

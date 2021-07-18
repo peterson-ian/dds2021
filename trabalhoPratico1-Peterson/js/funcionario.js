@@ -1,5 +1,7 @@
 $(document).ready(function(){
+    // Cadastro assincrono
     $('#cadastrar-funcionario').click(function(){
+        // Pego os dados e coloco eles em um objeto json
         post_json = {
             primeiro_nome: $("#nome_funcionario").val(),
             sobrenome: $("#sobrenome_funcionario").val(),
@@ -13,6 +15,7 @@ $(document).ready(function(){
             departamento: $("#id_departamento_funcionario").val()
         }
 
+        // Envio o objeto json para um arquivo onde insere e recebo a resposta, limpa o formulario e exibe uma msg de sucesso
         $.post("recebe_form_funcionario.php",post_json,function(resposta){
             if(resposta == "1"){
                 $("form").trigger("reset");
@@ -22,10 +25,14 @@ $(document).ready(function(){
         });
     });
 
+    // Remoção assincrona
     $(".remover").click(function(){
+        // Pega o id para saber qual tupla devo remover
         id = $(this).val();
+        // Crio um objeto json
         obj_json = {id: id}
 
+        // Envio o objeto json para um arquivo onde remove e recebo a resposta, tira a tupla e exibe uma msg de sucesso
         $.post("remover_funcionario.php",obj_json,function(retorno){
             console.log(retorno)
             if(retorno=='1'){
@@ -36,6 +43,8 @@ $(document).ready(function(){
         });
     });
 
+    // Alteração assincrona
+    // Aqui eu exibo nos elementos um input p/ eles colocarem as mudanças
     $(".alterar").click(function(){
 
         id = $(this).val(); 
@@ -62,10 +71,13 @@ $(document).ready(function(){
         input_data_contratacao = "<input type='date' name='data_contratacao"+ id + "' value='" + valor_data_contratacao + "' />";
         $("#data_contratacao"+id).html(input_data_contratacao);
 
+        // Por ser chave estrangeira eu tenho que limitar as possiveis mudanças 
+        // uso o select pra isso, fazendo com que as opçoes sejam criadas por dados do DB da propria tabela de relacionamento
         $.post("select_tabela.php", $tabela = { tabela : "FUNCAO"}, function(retorno){
             valor_funcao = $("#funcao"+id).html();
             input_funcao = "<select name='funcao"+ id + "'>";
             
+            // Laço de repetiçao
             $.each(retorno, function(i,v){
                 input_funcao += "<option value = '" + v.ID_FUNCAO + "'>" + v.TITULO_FUNCAO + "</option>";
                 if(v.TITULO_FUNCAO == valor_funcao){
@@ -87,11 +99,14 @@ $(document).ready(function(){
         input_comissao = "<input type='number' step='0.01' name='comissao"+ id + "' value='" + valor_comissao + "' />";
         $("#comissao"+id).html(input_comissao);
 
+        // Por ser chave estrangeira eu tenho que limitar as possiveis mudanças 
+        // uso o select pra isso, fazendo com que as opçoes sejam criadas por dados do DB da propria tabela de relacionamento
         $.post("select_tabela.php", $tabela = { tabela : "FUNCIONARIO"}, function(retorno){
             valor_gerente = $("#gerente"+id).html();
             input_gerente = "<select name='gerente"+ id + "'>";
             input_gerente += "<option value = 'NULL'>Sem gerente</option>"
             
+            // Laço de repetiçao
             $.each(retorno, function(i,v){
                 input_gerente += "<option value = '" + v.ID_FUNCIONARIO + "'>" + v.NOME + "</option>";
                 if(valor_gerente != ""){
@@ -111,10 +126,13 @@ $(document).ready(function(){
             $("select[name='gerente" + id + "']").val(id_gerente);
         });
 
+        // Por ser chave estrangeira eu tenho que limitar as possiveis mudanças 
+        // uso o select pra isso, fazendo com que as opçoes sejam criadas por dados do DB da propria tabela de relacionamento
         $.post("select_tabela.php", $tabela = { tabela : "DEPARTAMENTO"}, function(retorno){
             valor_departamento = $("#departamento"+id).html();
             input_departamento = "<select name='departamento"+ id + "'>";
             
+            // Laço de repetiçao
             $.each(retorno, function(i,v){
                 input_departamento += "<option value = '" + v.ID_DEPARTAMENTO + "'>" + v.NOME_DEPARTAMENTO + "</option>";
                 if(v.NOME_DEPARTAMENTO == valor_departamento){
@@ -132,6 +150,7 @@ $(document).ready(function(){
 
     });
 
+    // Aqui eu pego os dados que estao nos inputs que o alterar criou e mando eles p/ o arquivo onde atualiza os dados
     $(".alterando").click(function(){
         id = $(this).val();
         botao = $(this);

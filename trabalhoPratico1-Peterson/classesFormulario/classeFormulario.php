@@ -24,9 +24,7 @@
             echo "<form method='$this->method' action='$this->action'>";
             echo "<h2>".$this->titulo."</h2>";
             foreach($this->elementos_form as $i=>$e){
-                echo "<div class='form'>";
                 $e->exibir();
-                echo "</div>";
             }
 
             echo "</form></fieldset>";

@@ -1,3 +1,8 @@
+<?php
+    // Adciono o arquivo que verifica se o usuario esta logado 
+    require_once "verificar_usuario.php";
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,20 +15,53 @@
 
     <body>
     <div id="cabecalho">
-        <img src="https://cdn-content.talentbrand.com.br/companies/104/w512h140/5015d502af88d84dd2aad1ca78a01f41647a0012.png?1550304844" alt="Imagem" title="Sistema de RH">
+        <!-- Imagem de logo do Sistema RH -->
+        <img id="logo" src="imagem.png" alt="Imagem" title="Sistema de RH">
+        <hr/>
         <p>Cadastrar</p>
-        <a href='cadastrar_regiao.php'>Região</a> 
-        <a href='cadastrar_pais.php'>País</a> 
-        <a href='cadastrar_localizacao.php'>Localização</a>
-        <a href='cadastrar_funcao.php'>Função</a>
-        <a href='cadastrar_departamento.php'>Departamento</a>
+        <?php
+            // Algumas opções do menu aparecem ou nao aparecem pra diferentes usuarios, aqui defino quem pode ver.
+            if($_SESSION["perfil"] == "1"){
+                echo"
+                    <a href='cadastrar_regiao.php'>Região</a> 
+                    <a href='cadastrar_pais.php'>País</a> 
+                    <a href='cadastrar_localizacao.php'>Localização</a>
+                ";
+            }
+        
+            if($_SESSION["perfil"] != "3"){
+                echo"<a href='cadastrar_funcao.php'>Função</a>";
+            }
+    
+            if($_SESSION["perfil"] == "1"){
+                echo"
+                    <a href='cadastrar_departamento.php'>Departamento</a>
+                ";
+            }
+        ?>
         <a href='cadastrar_funcionario.php'>Funcionario</a>
+
+        <hr/>
         
         <p>Listar</p>
-        <a href='listar_regiao.php'>Região</a> 
-        <a href='listar_pais.php'>País</a> 
-        <a href='listar_localizacao.php'>Localização</a>
+        <?php
+            if($_SESSION["perfil"] == "1"){
+                echo"
+                    <a href='listar_regiao.php'>Região</a> 
+                    <a href='listar_pais.php'>País</a> 
+                ";
+            }
+
+            if($_SESSION["perfil"] != "3"){
+                echo"<a href='listar_localizacao.php'>Localização</a>";
+            }
+    
+        ?>
+        
         <a href='listar_funcao.php'>Função</a>
         <a href='listar_departamento.php'>Departamento</a>
         <a href='listar_funcionario.php'>Funcionario</a>
+        <hr/>
+        <p><a href='logout.php'>Sair</a></p>
+        <hr/>
     </div>

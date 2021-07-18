@@ -1,6 +1,9 @@
 <?php
-    include "conexao.php";
+    // Aqui eu verifico se o usuario esta logado;
+    require_once "verificar_usuario.php";
+    require_once "conexao.php";
 
+    // Aqui eu recebo e atualizo os dados
     $id = $_POST["id"];
     $nome = $_POST["primeiro_nome"];
     $sobrenome = $_POST["sobrenome"];
@@ -24,5 +27,6 @@
     
     $conexao->query($sql);
     
+    // Aqui eu retorno "1" p/ realizar outras funcoes no sistema, como exibir uma msg de sucesso    
     echo "1";
 ?>

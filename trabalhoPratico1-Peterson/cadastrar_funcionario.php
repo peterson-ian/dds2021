@@ -1,12 +1,16 @@
 <?php
-    include "cabecalho.php";
-    include "classesFormulario/classeFormulario.php";
-    include "conexao.php";
+    // Aqui eu coloco o menu padrao do sistema e ainda verifico se o usuario esta logado;
+    require_once "cabecalho.php";
 
+    require_once "classesFormulario/classeFormulario.php";
+    require_once "conexao.php";
+
+    // Aqui eu acrescento o link que relaciona o arquivo de js de funcionario
     echo'<script src="js/funcionario.js"></script>';
 
     echo"<p id='msg'></p>";
 
+    // Criando um formulario e acrescentando elementos usando a classFormulario p/ cadastrar funcionario
     $v["method"] = "POST";
     $v["action"] = "#";
     $v["titulo"] = 'Cadastrar Funcionario';
@@ -67,6 +71,8 @@
     $v["id"] = "id_funcao_funcionario";
     $ol["label_select"] = "::Selecione a Função::";
 
+    // Por ser chave estrangeira tenho que criar um select onde as opções sao validas 
+    // As opçoes sao pegas no proprio BD da tabela do relacionamento
     $sql = "SELECT * FROM FUNCAO ORDER BY TITULO_FUNCAO;";
     $resultado = $conexao->query($sql) or die("O sistema não está respondendo. Avise o administrador.");
 
@@ -108,6 +114,8 @@
     $v["id"] = "id_gerente_funcionario";
     $ol["label_select"] = "::Selecione o Gerente::";
 
+    // Por ser chave estrangeira tenho que criar um select onde as opções sao validas 
+    // As opçoes sao pegas no proprio BD da tabela do relacionamento
     $sql = "SELECT ID_FUNCIONARIO, CONCAT(NOME, ' ', SOBRENOME) AS NOME_COMPLETO FROM FUNCIONARIO;";
     $resultado = $conexao->query($sql) or die("O sistema não está respondendo. Avise o administrador.");
 
@@ -127,6 +135,8 @@
     $v["id"] = "id_departamento_funcionario";
     $ol["label_select"] = "::Selecione o Departamento::";
 
+    // Por ser chave estrangeira tenho que criar um select onde as opções sao validas 
+    // As opçoes sao pegas no proprio BD da tabela do relacionamento
     $sql = "SELECT * FROM DEPARTAMENTO ORDER BY NOME_DEPARTAMENTO;";
     $resultado = $conexao->query($sql) or die("O sistema não está respondendo. Avise o administrador.");
 
